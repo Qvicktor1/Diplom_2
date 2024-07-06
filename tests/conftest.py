@@ -22,17 +22,11 @@ def create_user():
 
 
 @pytest.fixture
-def create_n_orders(create_user, request):
-    orders_to_create = request.param
+def create_n_orders(create_user, request=3):
+    orders_to_create = request
     payload = {"ingredients": ["61c0c5a71d1f82001bdaaa6d"]}
     headers = {'Authorization': f'{create_user[2]}'}
     for order in range(orders_to_create):
         requests.post(Urls.create_order_url, data=payload, headers=headers)
 
 
-@pytest.fixture
-def create_three_orders(create_user):
-    payload = {"ingredients": ["61c0c5a71d1f82001bdaaa6d"]}
-    headers = {'Authorization': f'{create_user[2]}'}
-    for order in range(3):
-        requests.post(Urls.create_order_url, data=payload, headers=headers)

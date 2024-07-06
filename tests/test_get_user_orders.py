@@ -36,7 +36,7 @@ class TestGetUserOrders:
                         'Checks that response contains user orders sorted by Update time ascending'
                         'that response code is 200 '
                         'and that request returns "success": true')
-    def test_sorting_user_orders_with_authorization(self, create_user, create_three_orders):
+    def test_sorting_user_orders_with_authorization(self, create_user, create_n_orders):
         headers = {'Authorization': f'{create_user[2]}'}
         response = requests.get(Urls.get_user_orders, headers=headers)
         assert response.status_code == 200, f'Instead of code 200 received code {response.status_code}'
